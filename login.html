@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>翻转式用户登录注册界面设计|DEMO_jQuery之家-自由分享jQuery、html5、css3的插件库</title>
+    <link rel="stylesheet" type="text/css" href="css/normalize-login.css" />
+    <link rel="stylesheet" type="text/css" href="css/default-login.css">
+    <link rel="stylesheet" type="text/css" href="css/styles-login.css">
+    <script src="./js/jquery-3.3.1.js"></script>
+
+    <script>
+        var loginUrl = "http://localhost:9002/user/login";
+        var registUrl = "http://localhost:9002/user/register";
+        var specificMapHtml = "./specificMap.html";
+
+
+        function sleep(d){
+            for(var t = Date.now();Date.now() - t <= d;);
+        }
+
+
+        function login() {
+            var phone = document.getElementById("phoneInputLogin");
+            var passWord = document.getElementById("passWordInputLogin");
+            $.ajax({
+                url: loginUrl,
+                type: 'POST',
+                data: {phone: phone.value,passWord:passWord.value},
+                xhrFields: {
+                    withCredentials: true // 这里设置了withCredentials
+                },
+                success: function (data) {
+                    if(data.code == 200){
+                        window.location.href=specificMapHtml;
+                    }else{
+                        alert(data.message);
+                    }
+                },
+                error: function () {
+                    alert("系统异常请稍后重试");
+                }
+            })
+        }
+
+        function regist() {
+            var phone = document.getElementById("phoneInputRegiste");
+            var email = document.getElementById("emailInputRegiste");
+            var passWord = document.getElementById("passWordInputRegiste");
+            var passWordConfirm = document.getElementById("passWordConfirmInputRegiste");
+            var successDiv=  document.getElementById("successDiv");
+            var registDiv = document.getElementById("registDiv");
+            if(passWord.value != passWordConfirm.value){
+                alert("2次密码输入不一致，请重新输入");
+            }else {
+                $.ajax({
+                    url: registUrl,
+                    type: 'POST',
+                    data: {phone: phone.value,passWord:passWord.value,email:email.value},
+                    xhrFields: {
+                        withCredentials: true // 这里设置了withCredentials
+                    },
+                    success: function (data) {
+                        if(data.code == 200){
+                            // registDiv.style.display="block";
+                            // successDiv.style.display="none";
+                            // sleep(3000);
+                            alert("注册成功");
+                            window.location.href=specificMapHtml;
+                        }else{
+                            alert(data.message);
+                        }
+                    },
+                    error: function () {
+                        alert("系统异常请稍后重试");
+                    }
+                })
+            }
+        }
+    </script>
+
+</head>
+<body>
+<div class="htmleaf-container">
+    <header class="htmleaf-header">
+        <h1>   <span></span></h1>
+        <div class="htmleaf-links">
+
+        </div>
+    </header>
+    <div class="login-wrap">
+        <div class="login-html">
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign In</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+            <div class="login-form">
+                <div class="sign-in-htm">
+                    <div class="group">
+                        <label for="phoneInputLogin" class="label">Phone</label>
+                        <input id="phoneInputLogin" type="text" name="phone" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="passWordInputLogin" class="label">Password</label>
+                        <input id="passWordInputLogin" type="password" name="passWord" class="input" data-type="password">
+                    </div>
+                    <div class="group">
+                        <input id="check" type="checkbox" class="check" checked>
+                        <label for="check"><span class="icon"></span> Keep me Signed in</label>
+                    </div>
+                    <div class="group">
+                        <input type="button" class="button" value="Sign In" onclick="login()">
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <a href="#forgot">Forgot Password?</a>
+                    </div>
+                </div>
+
+                <div class="sign-up-htm">
+                    <div class="group">
+                        <label for="phoneInputRegiste" class="label">Phone</label>
+                        <input id="phoneInputRegiste" name="phone" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="passWordInputRegiste" class="label">Password</label>
+                        <input id="passWordInputRegiste" name="passWord" type="password" class="input" data-type="password">
+                    </div>
+                    <div class="group">
+                        <label for="passWordConfirmInputRegiste" class="label">Repeat Password</label>
+                        <input id="passWordConfirmInputRegiste" type="password" class="input" data-type="password">
+                    </div>
+                    <div class="group">
+                        <label for="emailInputRegiste" class="label">Email Address</label>
+                        <input id="emailInputRegiste" name="email" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <input type="button" class="button" value="Sign Up" onclick="regist()">
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <label for="tab-1">Already Member?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="related">
+        <h3>  </h3>
+        <h3>  </h3>
+        <h3> 云 </h3>
+    </div>
+</div>
+
+</body>
+</html>
