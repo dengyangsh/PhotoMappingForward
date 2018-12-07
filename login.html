@@ -13,7 +13,7 @@
     <script>
         var loginUrl = "http://localhost:9002/user/login";
         var registUrl = "http://localhost:9002/user/register";
-        var specificMapHtml = "./specificMap.html";
+        var myMapHtml = "./myMap.html";
 
 
         function sleep(d){
@@ -33,7 +33,7 @@
                 },
                 success: function (data) {
                     if(data.code == 200){
-                        window.location.href=specificMapHtml;
+                        window.location.href=myMapHtml;
                     }else{
                         alert(data.message);
                     }
@@ -67,7 +67,7 @@
                             // successDiv.style.display="none";
                             // sleep(3000);
                             alert("注册成功");
-                            window.location.href=specificMapHtml;
+                            window.location.href=myMapHtml;
                         }else{
                             alert(data.message);
                         }
