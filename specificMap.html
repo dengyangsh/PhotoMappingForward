@@ -6,6 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="css/default.css">
+    <script type="text/javascript">
+
+        var getPhotoUrl = "http://localhost:9002/photo/provincePhoto";
+        var loginUrl = "http://localhost:9002/user/login";
+        var registUrl = "http://localhost:9002/user/register";
+        var loginHtml = "./login.html";
+        var uploadHtml = "./upload.html";
+
+        function getQueryString(name) { var result = window.location.search.match(new RegExp("[\?\&]" + name + "=([^\&]+)", "i")); if (result == null || result.length < 1) { return ""; } return result[1]; }
+
+        function turnUpload() {
+
+            window.location.href=uploadHtml+"?province=" + getQueryString("province");
+
+        }
+    </script>
     <style>
         * { margin:0; }
         #div1 { margin:auto; position:relative; }
@@ -20,7 +36,7 @@
         <h1>Your photo <span>A Dynaimc Pinterest-Style Grid Layout with Endless Scrolling</span></h1>
         <div class="htmleaf-links">
             <a class="htmleaf-icon icon-htmleaf-home-outline" href="./myMap.html" title="返回主页" target="_blank"><span> 返回主页</span></a>
-            <a class="htmleaf-icon icon-htmleaf-arrow-forward-outline" href="./upload.html" title="照片上传" target="_blank"><span> 照片上传</span></a>
+            <a class="htmleaf-icon icon-htmleaf-arrow-forward-outline" href="#" onclick="turnUpload()" title="照片上传" target="_blank"><span> 照片上传</span></a>
         </div>
     </header>
     <div class="htmleaf-content bgcolor-3">
@@ -35,14 +51,6 @@
 <script src="js/jquery.waterfall.js"></script>
 
 <script type="text/javascript">
-
-    var getPhotoUrl = "http://localhost:9002/photo/provincePhoto";
-    var loginUrl = "http://localhost:9002/user/login";
-    var registUrl = "http://localhost:9002/user/register";
-    var loginHtml = "./login.html";
-    var uploadHtml = "./upload.html";
-
-    function getQueryString(name) { var result = window.location.search.match(new RegExp("[\?\&]" + name + "=([^\&]+)", "i")); if (result == null || result.length < 1) { return ""; } return result[1]; }
     $.ajax({
         url: getPhotoUrl,
         type: 'POST',

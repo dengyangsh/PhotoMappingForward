@@ -96,40 +96,40 @@ option = {
             geoIndex: 0,
             // tooltip: {show: false},
             data:[
-                {name: '北京', value: 111},
-                {name: '天津', value: randomValue()},
-                {name: '上海', value: randomValue()},
-                {name: '重庆', value: randomValue()},
-                {name: '河北', value: randomValue()},
-                {name: '河南', value: randomValue()},
-                {name: '云南', value: randomValue()},
-                {name: '辽宁', value: randomValue()},
-                {name: '黑龙江', value: randomValue()},
-                {name: '湖南', value: randomValue()},
-                {name: '安徽', value: randomValue()},
-                {name: '山东', value: randomValue()},
-                {name: '新疆', value: randomValue()},
-                {name: '江苏', value: randomValue()},
-                {name: '浙江', value: randomValue()},
-                {name: '江西', value: randomValue()},
-                {name: '湖北', value: randomValue()},
-                {name: '广西', value: randomValue()},
-                {name: '甘肃', value: randomValue()},
-                {name: '山西', value: randomValue()},
-                {name: '内蒙古', value: randomValue()},
-                {name: '陕西', value: randomValue()},
-                {name: '吉林', value: randomValue()},
-                {name: '福建', value: randomValue()},
-                {name: '贵州', value: randomValue()},
-                {name: '广东', value: randomValue()},
-                {name: '青海', value: randomValue()},
-                {name: '西藏', value: randomValue()},
-                {name: '四川', value: randomValue()},
-                {name: '宁夏', value: randomValue()},
-                {name: '海南', value: randomValue()},
-                {name: '台湾', value: randomValue()},
-                {name: '香港', value: randomValue()},
-                {name: '澳门', value: randomValue()}
+                {name: '北京', value: randomValue() ,test: 'beijing'},
+                {name: '天津', value: randomValue() ,test: 'tianjing'},
+                {name: '上海', value: randomValue() ,test: 'shanghai'},
+                {name: '重庆', value: randomValue() ,test: 'chongqin'},
+                {name: '河北', value: randomValue() ,test: 'hebei'},
+                {name: '河南', value: randomValue() ,test: 'henan'},
+                {name: '云南', value: randomValue() ,test: 'yunnan'},
+                {name: '辽宁', value: randomValue() ,test: 'liaoning'},
+                {name: '黑龙江', value: randomValue() ,test: 'heilongjiang'},
+                {name: '湖南', value: randomValue() ,test: 'hunan'},
+                {name: '安徽', value: randomValue() ,test:'anhui'},
+                {name: '山东', value: randomValue() ,test: 'shandong'},
+                {name: '新疆', value: randomValue() ,test: 'xinjiang'},
+                {name: '江苏', value: randomValue() ,test: 'jiangsu'},
+                {name: '浙江', value: randomValue() ,test: 'zhejiang'},
+                {name: '江西', value: randomValue() ,test: 'jiangxi'},
+                {name: '湖北', value: randomValue() ,test: 'hubei'},
+                {name: '广西', value: randomValue() ,test: 'guangxi'},
+                {name: '甘肃', value: randomValue() ,test:'gansu'},
+                {name: '山西', value: randomValue() ,test: 'shanxi'},
+                {name: '内蒙古', value: randomValue() ,test: 'neimenggu'},
+                {name: '陕西', value: randomValue() ,test: 'shanxi'},
+                {name: '吉林', value: randomValue() ,test: 'jilin'},
+                {name: '福建', value: randomValue() ,test: 'fujian'},
+                {name: '贵州', value: randomValue() ,test: 'guizhou'},
+                {name: '广东', value: randomValue() ,test: 'guangdong'},
+                {name: '青海', value: randomValue() ,test: 'qinghai'},
+                {name: '西藏', value: randomValue() ,test: 'xizang'},
+                {name: '四川', value: randomValue() ,test: 'sichuan'},
+                {name: '宁夏', value: randomValue() ,test: 'ningxia'},
+                {name: '海南', value: randomValue() ,test: 'hainan'},
+                {name: '台湾', value: randomValue() ,test: 'taiwan'},
+                {name: '香港', value: randomValue() ,test: 'xianggang'},
+                {name: '澳门', value: randomValue() ,test: 'aomen'}
             ]
         }
     ]
@@ -146,7 +146,16 @@ pa = {
 if (option && typeof option === "object") {
     myChart.setOption(option, true);
     myChart.on('click', function (params) {
-        window.location.href = specificMap+"?province="+encodeURI(params.name);
+        for (let i = 0; i <option.series.length ; i++) {
+            if(option.series[i].type=="map"){
+                var data = option.series[i].data;
+                for (let j = 0; j < data.length; j++) {
+                    if(params.name == data[j].name){
+                        window.location.href = specificMap+"?province="+data[j].test;
+                    }
+                }
+            }
+        }
     });
 }
        </script>
