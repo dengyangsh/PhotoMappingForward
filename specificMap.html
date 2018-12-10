@@ -6,19 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/normalize.css" />
     <link rel="stylesheet" type="text/css" href="css/default.css">
+    <script src="js/ProjectVariable.js"></script>
     <script type="text/javascript">
 
-        var getPhotoUrl = "http://localhost:9002/photo/provincePhoto";
-        var loginUrl = "http://localhost:9002/user/login";
-        var registUrl = "http://localhost:9002/user/register";
-        var loginHtml = "./login.html";
-        var uploadHtml = "./upload.html";
+
 
         function getQueryString(name) { var result = window.location.search.match(new RegExp("[\?\&]" + name + "=([^\&]+)", "i")); if (result == null || result.length < 1) { return ""; } return result[1]; }
 
         function turnUpload() {
-
-            window.location.href=uploadHtml+"?province=" + getQueryString("province");
+            alert(projectVariable.getPhotoUrl)
+            window.location.href=projectVariable.uploadHtml+"?province=" + getQueryString("province");
 
         }
     </script>
@@ -52,7 +49,7 @@
 
 <script type="text/javascript">
     $.ajax({
-        url: getPhotoUrl,
+        url: projectVariable.getPhotoUrl,
         type: 'POST',
         data: {province:decodeURI(getQueryString("province"))},
         xhrFields: {
@@ -93,7 +90,7 @@
         resizeable: true,
         ajaxCallback: function(success, end) {
             $.ajax({
-                url: getPhotoUrl,
+                url: projectVariable.getPhotoUrl,
                 type: 'POST',
                 data: {province:decodeURI(getQueryString("province"))},
                 xhrFields: {

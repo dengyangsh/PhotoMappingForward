@@ -9,13 +9,8 @@
     <link rel="stylesheet" type="text/css" href="css/default-login.css">
     <link rel="stylesheet" type="text/css" href="css/styles-login.css">
     <script src="./js/jquery-3.3.1.js"></script>
-
+    <script src="js/ProjectVariable.js"></script>
     <script>
-        var loginUrl = "http://localhost:9002/user/login";
-        var registUrl = "http://localhost:9002/user/register";
-        var myMapHtml = "./myMap.html";
-
-
         function sleep(d){
             for(var t = Date.now();Date.now() - t <= d;);
         }
@@ -33,7 +28,7 @@
                 },
                 success: function (data) {
                     if(data.code == 200){
-                        window.location.href=myMapHtml;
+                        window.location.href=projectVariable.myMapHtml;
                     }else{
                         alert(data.message);
                     }
@@ -55,7 +50,7 @@
                 alert("2次密码输入不一致，请重新输入");
             }else {
                 $.ajax({
-                    url: registUrl,
+                    url: projectVariable.registUrl,
                     type: 'POST',
                     data: {phone: phone.value,passWord:passWord.value,email:email.value},
                     xhrFields: {
@@ -67,7 +62,7 @@
                             // successDiv.style.display="none";
                             // sleep(3000);
                             alert("注册成功");
-                            window.location.href=myMapHtml;
+                            window.location.href=projectVariable.myMapHtml;
                         }else{
                             alert(data.message);
                         }

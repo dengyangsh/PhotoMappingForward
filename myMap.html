@@ -12,6 +12,7 @@
        <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
        <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
        <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/simplex.js"></script>
+       <script src="js/ProjectVariable.js"></script>
    </head>
    <body style="height: 100%; margin: 0">
        <div id="container" style="height: 100%"></div>
@@ -136,9 +137,7 @@ option = {
 };;
 
 
-var loginHtml = "./login.html";
-var registHtml = "./register.html";
-var specificMap = "./specificMap.html";
+
 pa = {
     province:""
 }
@@ -151,7 +150,7 @@ if (option && typeof option === "object") {
                 var data = option.series[i].data;
                 for (let j = 0; j < data.length; j++) {
                     if(params.name == data[j].name){
-                        window.location.href = specificMap+"?province="+data[j].test;
+                        window.location.href = projectVariable.specificMapHtml+"?province="+data[j].test;
                     }
                 }
             }
