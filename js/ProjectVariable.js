@@ -11,10 +11,10 @@
 
 
 var projectVariable= {
-    getPhotoUrl: "http://129.204.14.220:82/photo/provincePhoto",
-    loginUrl:"http://129.204.14.220:82/user/login",
-    registUrl: "http://129.204.14.220:82/user/register",
-    uploadUrl:"http://129.204.14.220:82/photo/uploadPhoto",
+    getPhotoUrl: "http://129.204.14.220:82/api/photo/provincePhoto",
+    loginUrl:"http://129.204.14.220:82/api/user/login",
+    registUrl: "http://129.204.14.220:82/api/user/register",
+    uploadUrl:"http://129.204.14.220:82/api/photo/uploadPhoto",
     loginHtml:"./login.html",
     myMapHtml : "./myMap.html",
     uploadHtml:"./upload.html",
