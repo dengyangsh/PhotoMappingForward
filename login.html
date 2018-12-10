@@ -20,7 +20,7 @@
             var phone = document.getElementById("phoneInputLogin");
             var passWord = document.getElementById("passWordInputLogin");
             $.ajax({
-                url: loginUrl,
+                url: projectVariable.loginUrl,
                 type: 'POST',
                 data: {phone: phone.value,passWord:passWord.value},
                 xhrFields: {
