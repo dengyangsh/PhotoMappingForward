@@ -49,7 +49,7 @@
     $('#file-fr').fileinput({
         theme: 'fa',
         language: 'fa',
-        uploadUrl: 'http://localhost:9002/photo/uploadPhoto',
+        uploadUrl: projectVariable.uploadUrl,
         allowedFileExtensions: ['jpg', 'png', 'gif'],
         uploadAsync:true,
         enctype: 'multipart/form-data',
